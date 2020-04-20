@@ -1,6 +1,19 @@
+buildscript {
+    apply from: 'version.gradle'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 29
@@ -23,6 +36,14 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
 }
 
 dependencies {
@@ -34,4 +55,24 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation deps.androidx.core_ktx
+    implementation deps.androidx.activity_ktx
+    implementation deps.androidx.material
+
+    implementation deps.library.okhttp
+    implementation deps.library.okhttp_logging_interceptor
+
+    implementation deps.library.retrofit
+    implementation deps.library.retrofit_converter_gson
+
+    implementation deps.library.gson
+
+    implementation deps.library.koin_viewmodel
+
+    implementation deps.library.glide
+
+    implementation deps.library.ted_permission
+
+    implementation deps.library.room
+    kapt deps.kapt.room
 }
