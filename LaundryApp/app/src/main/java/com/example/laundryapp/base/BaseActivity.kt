@@ -15,7 +15,7 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-˚
+
         binding = DataBindingUtil.setContentView(this, layoutRes)
         binding.setVariable(BR.vm, vm)
         binding.lifecycleOwner = this
