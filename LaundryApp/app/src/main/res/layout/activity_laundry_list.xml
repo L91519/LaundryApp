@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="vm"
-            type="" />
+            type="com.example.laundryapp.ui.laundry_list.LaundryListViewModel" />
     </data>
 
     <RelativeLayout
@@ -25,6 +26,8 @@
             android:layout_toRightOf="@id/spnr_search_filter" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/rv_laundry_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,7 +40,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:background="@color/gray4"
-            android:src="@drawable/ic_add_black_24dp" />
+            android:src="@drawable/ic_add_gray2_24dp" />
 
     </RelativeLayout>
 </layout>
