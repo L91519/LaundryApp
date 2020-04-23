@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">LaundryApp</string>
+
+    <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>
+    <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>
+    <string name="permission_granted">camera permission granted</string>
+
+    <string name="pic_dialog_title">Add Photo</string>
+    <string name="pic_dialog_album">Choose from gallery</string>
+    <string name="pic_dialog_camera">Take Photo</string>
+    <string name="pic_dialog_cancel">Cancel</string>
+
+    <string name="cancel">취소</string>
+    <string name="confirm">확인</string>
 </resources>
