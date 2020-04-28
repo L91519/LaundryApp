@@ -12,4 +12,6 @@
 
     <string name="cancel">취소</string>
     <string name="confirm">확인</string>
+
+    <string name="finished_laundry_check_box">완료 항목 표시</string>
 </resources>
