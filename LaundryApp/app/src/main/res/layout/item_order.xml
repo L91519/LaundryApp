@@ -1,100 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:id="@+id/rl_customer_info"
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.laundryapp.ui.laundry_list.LaundryListViewModel" />
+
+        <variable
+            name="item"
+            type="com.example.laundryapp.data.model.LaundryModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_customer_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="4dp"
-            android:text="홍길동"
-            android:textSize="16dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_customer_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tv_customer_name"
-            android:text="삼정하이츠 1동 205호"
-            android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/tv_customer_ph"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_customer_address"
-            android:layout_toRightOf="@id/tv_customer_name"
-            android:text="010-5565-1451"
-            android:textSize="12dp" />
-
-        <View
+        <RelativeLayout
+            android:id="@+id/rl_customer_info"
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_below="@id/tv_customer_ph"
-            android:layout_margin="8dp"
-            android:background="@android:color/black" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="8dp"
-            android:text="2020.04.23"
-            android:textSize="8dp" />
+            android:visibility="@{}">
 
-        <TextView
-            android:id="@+id/tv_brand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_date"
-            android:layout_marginLeft="48dp"
-            android:text="나이키" />
+            <TextView
+                android:id="@+id/tv_customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="4dp"
+                android:text="홍길동"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_kind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_date"
-            android:layout_marginLeft="12dp"
-            android:layout_toRightOf="@id/tv_brand"
-            android:text="어글리 슈즈" />
+            <TextView
+                android:id="@+id/tv_customer_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/tv_customer_name"
+                android:text="삼정하이츠 1동 205호"
+                android:textSize="12dp" />
 
-        <TextView
-            android:id="@+id/tv_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_date"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="8dp"
-            android:text="₩3,000" />
+            <TextView
+                android:id="@+id/tv_customer_ph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_customer_address"
+                android:layout_toRightOf="@id/tv_customer_name"
+                android:text="010-5565-1451"
+                android:textSize="12dp" />
 
-        <View
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/tv_customer_ph"
+                android:layout_margin="8dp"
+                android:background="@android:color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_below="@id/tv_brand"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="8dp"
-            android:background="@android:color/black" />
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:text="2020.04.23"
+                android:textSize="8dp" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_date"
+                android:layout_marginLeft="48dp"
+                android:text="나이키" />
+
+            <TextView
+                android:id="@+id/tv_kind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_date"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/tv_brand"
+                android:text="어글리 슈즈" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_date"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:text="₩3,000" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/tv_brand"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:background="@android:color/black" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>
