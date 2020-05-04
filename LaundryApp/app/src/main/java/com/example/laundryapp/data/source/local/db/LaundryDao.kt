@@ -1,7 +1,6 @@
 package com.example.laundryapp.data.source.local.db
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.*
 import com.example.laundryapp.data.model.LaundryModel
 
 @Dao
@@ -21,4 +20,10 @@ interface LaundryDao {
 
     @Query("SELECT * FROM Laundries WHERE brand = :ph")
     fun getLaundriesByPH(ph: String): MutableList<LaundryModel>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveLaundry(laundryModel: LaundryModel)
+
+    @Delete
+    fun delLaundry(laundryModel: LaundryModel)
 }
