@@ -25,7 +25,11 @@ data class LaundryModel(
     @ColumnInfo(name = "etc")
     val etc: String,
 
+    @ColumnInfo(name = "status")
+    val isDone: Boolean,
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int = 0
+
 ) : Serializable
