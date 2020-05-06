@@ -22,7 +22,7 @@ interface LaundryDao {
     fun getLaundriesByPH(ph: String): MutableList<LaundryModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun saveLaundry(laundryModel: LaundryModel)
+    fun saveLaundry(laundries: MutableList<LaundryModel>)
 
     @Delete
     fun delLaundry(laundryModel: LaundryModel)
