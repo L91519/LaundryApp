@@ -6,6 +6,10 @@ ext {
                     material    : '1.2.0-alpha04',
                     recyclerview: '1.1.0',
             ],
+            firebase : [
+                    firestore : '21.2.1',
+                    analytics : '17.2.2',
+            ],
             okhttp        : '4.3.0',
             retrofit      : '2.7.1',
             gson          : '2.8.6',
@@ -21,6 +25,10 @@ ext {
 
                     material    : "com.google.android.material:material:$version.androidx.material",
                     recyclerview: "androidx.recyclerview:recyclerview:$version.androidx.recyclerview",
+            ],
+            firebase: [
+                    firestore: "com.google.firebase:firebase-firestore:$version.firebase.firestore",
+                    analytics: "com.google.firebase:firebase-analytics:$version.firebase.analytics"
             ],
             library : [
                     okhttp                    : "com.squareup.okhttp3:okhttp:$version.okhttp",

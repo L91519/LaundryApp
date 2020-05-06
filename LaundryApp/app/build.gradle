@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: "kotlin-kapt"
@@ -25,6 +26,8 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,9 +58,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
     implementation deps.androidx.core_ktx
     implementation deps.androidx.activity_ktx
     implementation deps.androidx.material
+
+    implementation deps.firebase.firestore
+    implementation deps.firebase.analytics
 
     implementation deps.library.okhttp
     implementation deps.library.okhttp_logging_interceptor
