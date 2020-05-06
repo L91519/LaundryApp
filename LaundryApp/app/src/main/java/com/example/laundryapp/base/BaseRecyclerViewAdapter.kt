@@ -30,9 +30,7 @@ open class BaseRecyclerViewAdapter<ITEM, B : ViewDataBinding>(
     fun updateItems(item: MutableList<ITEM>) {
         this.items.run {
             clear()
-            items?.let {
-                addAll(it)
-            }
+            addAll(items)
         }
 
         notifyDataSetChanged()
