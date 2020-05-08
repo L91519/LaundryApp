@@ -10,7 +10,7 @@ val viewModelModule = module {
         LaundryListViewModel(get())
     }
 
-    viewModel {
-        LaundryAddDialogViewModel(get())
-    }
+//    viewModel {
+//        LaundryAddDialogViewModel(get())
+//    }
 }
