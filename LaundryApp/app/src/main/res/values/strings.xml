@@ -14,4 +14,7 @@
     <string name="confirm">확인</string>
 
     <string name="finished_laundry_check_box">완료 항목 표시</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="no_account">Don\'t have an account</string>
 </resources>
