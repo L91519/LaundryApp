@@ -1,4 +1,4 @@
-package com.example.laundryapp.ui.sign_up
+package com.example.laundryapp.ui.auth.sign_up
 
 import com.example.laundryapp.R
 import com.example.laundryapp.base.BaseActivity

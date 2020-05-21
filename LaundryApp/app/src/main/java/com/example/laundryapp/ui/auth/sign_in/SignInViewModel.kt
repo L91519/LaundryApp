@@ -1,4 +1,4 @@
-package com.example.laundryapp.ui.sign_in
+package com.example.laundryapp.ui.auth.sign_in
 
 import com.example.laundryapp.base.BaseViewModel
 
