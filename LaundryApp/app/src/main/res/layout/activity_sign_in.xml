@@ -5,7 +5,7 @@
 
         <variable
             name="vm"
-            type="com.example.laundryapp.ui.sign_in.SignInViewModel" />
+            type="com.example.laundryapp.ui.auth.sign_in.SignInViewModel" />
 
     </data>
 
