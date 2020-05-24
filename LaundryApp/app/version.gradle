@@ -9,7 +9,7 @@ ext {
             firebase           : [
                     firestore: '21.2.1',
                     analytics: '17.2.2',
-                    auth     : '',
+                    auth     : '19.0.0',
                     core     : '',
             ],
             okhttp             : '4.3.0',
@@ -20,7 +20,7 @@ ext {
             glide              : '4.10.0',
             ted_permission     : '2.1.0',
             lifecycle_extension: '',
-            gms                : '',
+            gms                : '17.0.0',
     ]
     deps = [
             androidx: [
@@ -32,7 +32,8 @@ ext {
             ],
             firebase: [
                     firestore: "com.google.firebase:firebase-firestore:$version.firebase.firestore",
-                    analytics: "com.google.firebase:firebase-analytics:$version.firebase.analytics"
+                    analytics: "com.google.firebase:firebase-analytics:$version.firebase.analytics",
+                    auth     : "com.google.firebase:firebase-auth:$version.firebase.auth",
             ],
             library : [
                     okhttp                    : "com.squareup.okhttp3:okhttp:$version.okhttp",
@@ -50,6 +51,8 @@ ext {
                     glide                     : "com.github.bumptech.glide:glide:$version.glide",
 
                     ted_permission            : "gun0912.ted:tedpermission:$version.ted_permission",
+
+                    gms                       : "com.google.android.gms:play-services-auth:$version.gms",
             ],
             kapt    : [
                     room: "androidx.room:room-compiler:$version.room",

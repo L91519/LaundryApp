@@ -65,6 +65,7 @@ dependencies {
 
     implementation deps.firebase.firestore
     implementation deps.firebase.analytics
+    implementation deps.firebase.auth
 
     implementation deps.library.okhttp
     implementation deps.library.okhttp_logging_interceptor
@@ -79,6 +80,8 @@ dependencies {
     implementation deps.library.glide
 
     implementation deps.library.ted_permission
+
+    implementation deps.library.gms
 
     implementation deps.library.room
     kapt deps.kapt.room
