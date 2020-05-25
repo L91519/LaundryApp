@@ -17,4 +17,10 @@
 
     <string name="sign_in">Sign In</string>
     <string name="no_account">Don\'t have an account</string>
+
+    <string name="goto_login_page">%s have an account.\n%s Here</string>
+    <string name="login_page_dont">Don\'t</string>
+    <string name="login_page_sign_up">Sign Up</string>
+    <string name="sign_up_page_already">Already</string>
+    <string name="sign_up_page_login">Login</string>
 </resources>
