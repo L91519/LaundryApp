@@ -29,8 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.laundry_list.LaundryListActivity"/>
-        <activity android:name="com.example.laundryapp.ui.auth.sign_in.SignInActivity"/>
-        <activity android:name="com.example.laundryapp.ui.auth.sign_up.SignUpActivity"/>
+        <activity android:name="com.example.laundryapp.ui.auth.SignInActivity"/>
+        <activity android:name="com.example.laundryapp.ui.auth.SignUpActivity"/>
     </application>
 
     <uses-permission android:name="android.permission.CAMERA" />
