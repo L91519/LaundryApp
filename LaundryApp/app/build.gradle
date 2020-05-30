@@ -63,6 +63,7 @@ dependencies {
     implementation deps.androidx.activity_ktx
     implementation deps.androidx.material
 
+    implementation deps.firebase.database
     implementation deps.firebase.firestore
     implementation deps.firebase.analytics
     implementation deps.firebase.auth

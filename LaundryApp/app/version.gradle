@@ -7,6 +7,7 @@ ext {
                     recyclerview: '1.1.0',
             ],
             firebase           : [
+                    database: '19.1.0',
                     firestore: '21.2.1',
                     analytics: '17.2.2',
                     auth     : '19.0.0',
@@ -31,6 +32,7 @@ ext {
                     recyclerview: "androidx.recyclerview:recyclerview:$version.androidx.recyclerview",
             ],
             firebase: [
+                    database : "com.google.firebase:firebase-database:$version.firebase.database",
                     firestore: "com.google.firebase:firebase-firestore:$version.firebase.firestore",
                     analytics: "com.google.firebase:firebase-analytics:$version.firebase.analytics",
                     auth     : "com.google.firebase:firebase-auth:$version.firebase.auth",
