@@ -4,17 +4,23 @@ import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseUser
 
 interface FirebaseSource {
-    fun login(email: String, pw: String)
+    fun login(email: String,
+              pw: String,
+              success: (Boolean) -> Unit,
+              fail: (Boolean) -> Unit)
 
-    fun register(email: String, pw: String)
+    fun register(email: String,
+                 pw: String,
+                 success: (Boolean) -> Unit,
+                 fail: (Boolean) -> Unit)
 
     fun logout()
 
     fun currentUser(): FirebaseUser?
 
-    fun addLaundry()
+    fun addLaundry(laundry: LaundryModel)
 
-    fun delLaundry()
+    fun delLaundry(laundry: LaundryModel)
 
     fun getLaundries() : MutableList<LaundryModel>
 

@@ -1,10 +1,8 @@
 package com.example.laundryapp.data.firebase.source
 
-import com.example.laundryapp.data.firebase.source.FirebaseSource
 import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseSourceImpl() :
@@ -16,26 +14,40 @@ class FirebaseSourceImpl() :
         FirebaseFirestore.getInstance()
     }
 
+    private val laundries: CollectionReference by lazy {
+        firebaseDatabase.collection("laundries")
+    }
+
 //    private val firebaseReference : DatabaseReference by lazy {
 //        firebaseDatabase.reference
 //    }
 
-    override fun login(email: String, pw: String) {
+    override fun login(
+        email: String,
+        pw: String,
+        success: (Boolean) -> Unit,
+        fail: (Boolean) -> Unit
+    ) {
         firebaseAuth.signInWithEmailAndPassword(email, pw).addOnCompleteListener {
             if (it.isSuccessful) {
-
+                success(true)
             } else if (it.isCanceled) {
-
+                fail(false)
             }
         }
     }
 
-    override fun register(email: String, pw: String) {
+    override fun register(
+        email: String,
+        pw: String,
+        success: (Boolean) -> Unit,
+        fail: (Boolean) -> Unit
+    ) {
         firebaseAuth.createUserWithEmailAndPassword(email, pw).addOnCompleteListener {
             if (it.isSuccessful) {
-
+                success(true)
             } else if (it.isCanceled) {
-
+                fail(false)
             }
         }
     }
@@ -44,11 +56,17 @@ class FirebaseSourceImpl() :
 
     override fun currentUser() = firebaseAuth.currentUser
 
-    override fun addLaundry() {
-        TODO("Not yet implemented")
+    override fun addLaundry(laundry: LaundryModel) {
+        laundries.add(
+            laundry
+        ).addOnSuccessListener {
+
+        }.addOnCanceledListener {
+
+        }
     }
 
-    override fun delLaundry() {
+    override fun delLaundry(laundry: LaundryModel) {
         TODO("Not yet implemented")
     }
 
