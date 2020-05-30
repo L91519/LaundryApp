@@ -16,11 +16,22 @@
     <string name="finished_laundry_check_box">완료 항목 표시</string>
 
     <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
     <string name="no_account">Don\'t have an account</string>
 
-    <string name="goto_login_page">%s have an account.\n%s Here</string>
-    <string name="login_page_dont">Don\'t</string>
-    <string name="login_page_sign_up">Sign Up</string>
-    <string name="sign_up_page_already">Already</string>
-    <string name="sign_up_page_login">Login</string>
+    <string name="goto_login_page">Don\'t have an account.\nSign Up Here</string>
+    <string name="goto_sign_up_page">Already have an account.\nLogin Here</string>
+    <string name="login_title">Account Login</string>
+    <string name="sign_up_title">New User Sign Up</string>
+
+    <string name="password">password</string>
+    <string name="email">email</string>
+    <string name="email_hint">user@gmail.com</string>
+    <string name="password_hint">password</string>
+
+    <string name="password_lost">forgot password?</string>
+
+    <string name="laundry_brand">brand</string>
+    <string name="laundry_kind">kind</string>
+    <string name="laundry_price">price</string>
 </resources>
