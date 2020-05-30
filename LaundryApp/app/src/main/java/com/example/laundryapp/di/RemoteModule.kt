@@ -2,7 +2,6 @@ package com.example.laundryapp.di
 
 import com.example.laundryapp.data.source.remote.LaundryRemoteDataSource
 import com.example.laundryapp.data.source.remote.LaundryRemoteDataSourceImpl
-import com.example.laundryapp.data.source.remote.network.LaundryApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -36,11 +35,12 @@ val remoteModule = module {
             .build()
     }
 
-    single {
-        get<Retrofit>().create(LaundryApi::class.java)
-    }
+//    single {
+//        get<Retrofit>().create(LaundryApi::class.java)
+//    }
 
     single<LaundryRemoteDataSource> {
-        LaundryRemoteDataSourceImpl(get())
+        LaundryRemoteDataSourceImpl()
+//        LaundryRemoteDataSourceImpl(get())
     }
 }
