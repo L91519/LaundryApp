@@ -1,9 +1,11 @@
 package com.example.laundryapp.ui.auth
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.example.laundryapp.R
 import com.example.laundryapp.base.BaseActivity
 import com.example.laundryapp.databinding.ActivitySignInBinding
+import com.example.laundryapp.extension.showToastShort
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignInActivity :
@@ -13,6 +15,7 @@ class SignInActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        observableProperty()
     }
 
     override fun onStarted() {
@@ -25,5 +28,11 @@ class SignInActivity :
 
     override fun onFailure(message: String) {
         TODO("Not yet implemented")
+    }
+
+    private fun observableProperty() {
+        vm.observableToast.observe(this@SignInActivity, Observer {
+            showToastShort(it)
+        })
     }
 }

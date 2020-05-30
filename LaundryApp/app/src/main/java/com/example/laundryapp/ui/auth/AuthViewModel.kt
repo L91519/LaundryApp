@@ -21,6 +21,10 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
     val _observableEmail = MutableLiveData<String>()
     val _observablePassWord = MutableLiveData<String>()
 
+    private val _observableToast = MutableLiveData<String>()
+    val observableToast : LiveData<String>
+        get() = _observableToast
+
     private val _observableIsLoginPage = MutableLiveData<Boolean>(true)
     val observableIsLoginPage : LiveData<Boolean>
         get() = _observableIsLoginPage
@@ -30,10 +34,15 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
             return
         }
         else {
-            repository.login(_observableEmail.value!!, _observablePassWord.value!!)
-            Intent(view.context, LaundryListActivity::class.java).also {
-                view.context.startActivity(it)
-            }
+            repository.login(_observableEmail.value!!, _observablePassWord.value!!,
+                success = {
+                    Intent(view.context, LaundryListActivity::class.java).also {
+                        view.context.startActivity(it)
+                    }
+                },
+                fail = {
+                    _observableToast.value = "Login Failed"
+                })
         }
 
     }
@@ -43,10 +52,16 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
             return
         }
         else {
-            repository.register(_observableEmail.value!!, _observablePassWord.value!!)
-            Intent(view.context, SignInActivity::class.java).also {
-                view.context.startActivity(it)
-            }
+            repository.register(_observableEmail.value!!,
+                _observablePassWord.value!!,
+                success = {
+                    Intent(view.context, SignInActivity::class.java).also {
+                        view.context.startActivity(it)
+                    }
+                },
+                fail = {
+                    _observableToast.value = "Sign In Failed"
+                })
         }
     }
 
