@@ -11,9 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <RelativeLayout
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -31,9 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_date"
-                android:layout_marginLeft="48dp"
-                android:textSize="14dp"
-                android:hint="@string/laundry_brand"/>
+                android:text="@{item.brand}"
+                android:textSize="14dp"/>
 
             <TextView
                 android:id="@+id/tv_kind"
@@ -42,8 +43,8 @@
                 android:layout_below="@id/tv_date"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/tv_brand"
-                android:textSize="14dp"
-                android:hint="@string/laundry_kind"/>
+                android:text="@{item.kind}"
+                android:textSize="14dp"/>
 
             <TextView
                 android:id="@+id/tv_price"
@@ -52,14 +53,13 @@
                 android:layout_below="@id/tv_date"
                 android:layout_alignParentRight="true"
                 android:textSize="14dp"
-                android:layout_marginRight="8dp"
-                android:hint="@string/laundry_price" />
+                android:text="@{item.price}"
+                android:layout_marginRight="8dp"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:layout_below="@id/tv_brand"
-                android:layout_marginLeft="48dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="8dp"
                 android:background="@android:color/black" />
