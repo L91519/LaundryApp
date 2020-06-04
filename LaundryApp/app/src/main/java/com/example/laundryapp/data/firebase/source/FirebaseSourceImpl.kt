@@ -1,5 +1,6 @@
 package com.example.laundryapp.data.firebase.source
 
+import android.util.Log
 import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
@@ -14,9 +15,8 @@ class FirebaseSourceImpl() :
         FirebaseFirestore.getInstance()
     }
 
-    private val laundries: CollectionReference by lazy {
+    private val laundries: CollectionReference =
         firebaseDatabase.collection("laundries")
-    }
 
 //    private val firebaseReference : DatabaseReference by lazy {
 //        firebaseDatabase.reference
@@ -25,30 +25,29 @@ class FirebaseSourceImpl() :
     override fun login(
         email: String,
         pw: String,
-        success: (Boolean) -> Unit,
-        fail: (Boolean) -> Unit
+        success: () -> Unit,
+        fail: (Exception) -> Unit
     ) {
-        firebaseAuth.signInWithEmailAndPassword(email, pw).addOnCompleteListener {
-            if (it.isSuccessful) {
-                success(true)
-            } else if (it.isCanceled) {
-                fail(false)
+        firebaseAuth.signInWithEmailAndPassword(email, pw)
+            .addOnSuccessListener {
+                success()
+            }.addOnFailureListener { e ->
+                fail(e)
             }
-        }
     }
 
     override fun register(
         email: String,
         pw: String,
-        success: (Boolean) -> Unit,
-        fail: (Boolean) -> Unit
+        success: () -> Unit,
+        fail: (Exception) -> Unit
     ) {
-        firebaseAuth.createUserWithEmailAndPassword(email, pw).addOnCompleteListener {
-            if (it.isSuccessful) {
-                success(true)
-            } else if (it.isCanceled) {
-                fail(false)
-            }
+        firebaseAuth.createUserWithEmailAndPassword(email, pw)
+            .addOnSuccessListener {
+                success()
+            }.addOnFailureListener { e ->
+                fail(e)
+
         }
     }
 
@@ -56,21 +55,57 @@ class FirebaseSourceImpl() :
 
     override fun currentUser() = firebaseAuth.currentUser
 
-    override fun addLaundry(laundry: LaundryModel) {
-        laundries.add(
-            laundry
-        ).addOnSuccessListener {
+    override fun addLaundry(
+        laundry: LaundryModel,
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) {
 
-        }.addOnCanceledListener {
+//        laundries.document(laundry.id.toString()).set(laundry)
 
+        currentUser()?.uid?.let {
+            firebaseDatabase.collection("users")
+                .document(it)
+                .collection("laundries")
+                .add(laundry)
+                .addOnSuccessListener {
+                    success()
+                }.addOnFailureListener { e ->
+                    fail(e)
+                }
         }
     }
 
-    override fun delLaundry(laundry: LaundryModel) {
+    override fun delLaundry(
+        laundry: LaundryModel,
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) {
         TODO("Not yet implemented")
     }
 
-    override fun getLaundries(): MutableList<LaundryModel> {
-        TODO("Not yet implemented")
+    override fun getLaundries(
+        success: (MutableList<LaundryModel>) -> Unit,
+        fail: (Exception) -> Unit
+    ) {
+        currentUser()?.uid?.let {
+            firebaseDatabase.collection("users")
+                .document(it)
+                .collection("laundries").get()
+                .addOnSuccessListener { documents ->
+                    mutableListOf<LaundryModel>().let { laundryModels ->
+                        for (document in documents) {
+                            laundryModels.add(document.toObject(LaundryModel::class.java))
+                        }
+                        success(laundryModels)
+                    }
+                }
+                .addOnFailureListener { e ->
+                    fail(e)
+                }
+                .addOnCompleteListener {
+                    Log.d("","")
+                }
+        }
     }
 }
