@@ -59,8 +59,9 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
                         view.context.startActivity(it)
                     }
                 },
-                fail = {
-                    _observableToast.value = "Sign In Failed"
+                fail = { e ->
+//                    _observableToast.value = "Sign In Failed"
+                    _observableToast.value = e.toString()
                 })
         }
     }
