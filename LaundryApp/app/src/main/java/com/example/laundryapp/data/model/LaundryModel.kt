@@ -8,28 +8,34 @@ import java.io.Serializable
 @Entity(tableName = "Laundries")
 data class LaundryModel(
     @ColumnInfo(name = "phoneNum")
-    val phoneNum: String,
+    val phoneNum: String? = null,
 
     @ColumnInfo(name = "address")
-    val address: String,
+    val address: String? = null,
 
     @ColumnInfo(name = "owner")
-    val owner: String,
+    val owner: String? = null,
 
     @ColumnInfo(name = "brand")
-    val brand: String,
+    val brand: String? = null,
 
     @ColumnInfo(name = "kind")
-    val kind: String,
+    val kind: String? = null,
+
+    @ColumnInfo(name = "price")
+    val price: String? = null,
 
     @ColumnInfo(name = "etc")
-    val etc: String,
+    val etc: String? = null,
 
     @ColumnInfo(name = "status")
-    val isDone: Boolean,
+    val isDone: Boolean? = null,
+
+    @ColumnInfo(name = "data")
+    val date: String? = null,
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Int = 0
 
-) : Serializable
+)
