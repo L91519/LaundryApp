@@ -22,13 +22,8 @@ class LaundryListActivity :
 
         adapter = LaundryListRecyclerViewAdapter()
         binding.rvLaundryList.adapter = adapter
-        vm.getLaundries()
 //
         observableProperty()
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     private fun observableProperty(){
@@ -40,6 +35,13 @@ class LaundryListActivity :
             if (it) {
                 showLaundryAddDialog()
                 vm.hideLaundryAddDialog()
+            }
+        })
+
+        vm.observableDismissDialog.observe(this, Observer {
+            if (it) {
+                laundryAddDialog.dismiss()
+                vm.changeDismissDialogStatus()
             }
         })
 
@@ -57,5 +59,8 @@ class LaundryListActivity :
 
     private fun showLaundryAddDialog() {
         laundryAddDialog.show(supportFragmentManager, "laundryAddDialog")
+    }
+
+    private fun dismissLaundryAddDialog() {
     }
 }

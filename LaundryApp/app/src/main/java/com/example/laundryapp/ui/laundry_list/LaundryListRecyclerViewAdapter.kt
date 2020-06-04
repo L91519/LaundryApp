@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.laundryapp.R
 import com.example.laundryapp.data.model.LaundryModel
 import com.example.laundryapp.databinding.ItemLaundryBinding
-import kotlinx.android.synthetic.main.item_order.view.*
+import kotlinx.android.synthetic.main.item_laundry.view.*
 
 class LaundryListRecyclerViewAdapter
     : RecyclerView.Adapter<LaundryListRecyclerViewAdapter.LaundryListViewHolder>() {
+
     private var items = mutableListOf<LaundryModel>()
     private lateinit var binding: ItemLaundryBinding
     private var showAllLaundry = false
@@ -46,8 +47,7 @@ class LaundryListRecyclerViewAdapter
 
     override fun getItemCount(): Int {
 
-        return if(showAllLaundry) items.size
-        else items.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: LaundryListViewHolder, position: Int) {
@@ -61,10 +61,19 @@ class LaundryListRecyclerViewAdapter
 
     fun setItems(newItems: MutableList<LaundryModel>, showAll: Boolean){
         items.clear()
-        if (showAll)
-            items.addAll(newItems)
-        else
-            items.addAll(newItems.filter { !it.isDone })
+//        if (showAll)
+//            items.addAll(newItems)
+//        else
+//        {
+//            items.addAll(newItems.filter { !it.isDone!! })
+//        }
+        items.addAll(newItems)
+        notifyDataSetChanged()
+    }
+
+    fun setItems(newItems: MutableList<LaundryModel>) {
+        items.clear()
+        items.addAll(newItems)
         notifyDataSetChanged()
     }
 
