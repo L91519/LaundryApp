@@ -4,10 +4,6 @@
     <data>
 
         <variable
-            name="vm"
-            type="com.example.laundryapp.ui.laundry_list.LaundryListViewModel" />
-
-        <variable
             name="item"
             type="com.example.laundryapp.data.model.LaundryModel" />
     </data>
@@ -27,10 +23,10 @@
                 android:id="@+id/tv_customer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="4dp"
-                android:text="홍길동"
+                android:text="@{item.owner}"
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
@@ -39,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/tv_customer_name"
-                android:text="삼정하이츠 1동 205호"
+                android:text="@{item.address}"
                 android:textSize="12dp" />
 
             <TextView
@@ -48,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_customer_address"
                 android:layout_toRightOf="@id/tv_customer_name"
-                android:text="010-5565-1451"
+                android:text="@{item.phoneNum}"
                 android:textSize="12dp" />
 
             <View
@@ -69,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
-                android:text="2020.04.23"
+                android:text="@{item.date}"
                 android:textSize="8dp" />
 
             <TextView
@@ -78,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_date"
                 android:layout_marginLeft="48dp"
-                android:text="나이키" />
+                android:text="@{item.brand}" />
 
             <TextView
                 android:id="@+id/tv_kind"
@@ -87,7 +83,7 @@
                 android:layout_below="@id/tv_date"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/tv_brand"
-                android:text="어글리 슈즈" />
+                android:text="@{item.kind}" />
 
             <TextView
                 android:id="@+id/tv_price"
@@ -96,7 +92,7 @@
                 android:layout_below="@id/tv_date"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
-                android:text="₩3,000" />
+                android:text="@{item.price}" />
 
             <View
                 android:layout_width="match_parent"

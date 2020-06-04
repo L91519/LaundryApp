@@ -37,7 +37,6 @@
 
         <androidx.recyclerview.widget.RecyclerView
             bindLaundryItems="@{vm.observableLaundryList}"
-            bindLaundryShowAll="@{vm.observableFinishedLaundryShow}"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/rv_laundry_list"
