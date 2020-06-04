@@ -1,9 +1,9 @@
 package com.example.laundryapp.data.source.remote
 
 import com.example.laundryapp.data.model.LaundryModel
-import com.example.laundryapp.data.source.remote.network.LaundryApi
 
-class LaundryRemoteDataSourceImpl constructor(private val laundryApi: LaundryApi) :
+//class LaundryRemoteDataSourceImpl constructor(private val laundryApi: LaundryApi) :
+class LaundryRemoteDataSourceImpl :
     LaundryRemoteDataSource {
     override fun getLaundries(
         success: (MutableList<LaundryModel>) -> Unit,
