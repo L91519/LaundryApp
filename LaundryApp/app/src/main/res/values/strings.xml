@@ -34,4 +34,6 @@
     <string name="laundry_brand">brand</string>
     <string name="laundry_kind">kind</string>
     <string name="laundry_price">price</string>
+    
+    <string name="laundry_status_change">Laundry Status Change</string>
 </resources>

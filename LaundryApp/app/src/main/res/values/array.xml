@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="laundry_status">
+        <item>Done</item>
+        <item>Undone</item>
+        <item>Cancel</item>
+    </string-array>
+
+</resources>
