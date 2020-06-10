@@ -6,4 +6,12 @@
         <item>Cancel</item>
     </string-array>
 
+    <string-array name="laundry_filter">
+        <item>전체</item>
+        <item>브랜드</item>
+        <item>종류</item>
+        <item>손님</item>
+        <item>휴대전화</item>
+    </string-array>
+
 </resources>
