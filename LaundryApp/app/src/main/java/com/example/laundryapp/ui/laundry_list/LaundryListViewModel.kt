@@ -1,5 +1,6 @@
 package com.example.laundryapp.ui.laundry_list
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.laundryapp.base.BaseViewModel
@@ -14,9 +15,21 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
     val observableLaundryList: LiveData<MutableList<LaundryModel>>
         get() = _observableLaundryList
 
-    private val _observableShowDialog = MutableLiveData(false)
-    val observableShowDialog: LiveData<Boolean>
-        get() = _observableShowDialog
+    private val _observableShowLaundryAddDialog = MutableLiveData(false)
+    val observableShowLaundryAddDialog: LiveData<Boolean>
+        get() = _observableShowLaundryAddDialog
+
+    private val _observableDismissLaundryAddDialog = MutableLiveData(false)
+    val observableDismissLaundryAddDialog: LiveData<Boolean>
+        get() = _observableDismissLaundryAddDialog
+
+    private val _observableLaundryStatusDialog = MutableLiveData(false)
+    val observableLaundryStatusDialog : LiveData<Boolean>
+        get() = _observableLaundryStatusDialog
+
+    private val _observableDismissLaundryStatusDialog = MutableLiveData(false)
+    val observableDismissLaundryStatusDialog : LiveData<Boolean>
+        get() = _observableDismissLaundryStatusDialog
 
     private val _observableFinishedLaundryShow = MutableLiveData(false)
     val observableFinishedLaundryShow: LiveData<Boolean>
@@ -30,29 +43,33 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
     val observableToast: LiveData<String>
         get() = _observableToast
 
-    private val _observableDismissDialog = MutableLiveData(false)
-    val observableDismissDialog: LiveData<Boolean>
-        get() = _observableDismissDialog
-
     private val _observableRestartActivity = MutableLiveData(false)
     val observableRestartActivity : LiveData<Boolean>
         get() = _observableRestartActivity
 
-    val observableOrderBrand = MutableLiveData<String>()
-    val observableOrderKind = MutableLiveData<String>()
-    val observableOrderPrice = MutableLiveData<String>()
-    val observableName = MutableLiveData<String>()
-    val observableAddress = MutableLiveData<String>()
-    val observablePhoneNum = MutableLiveData<String>()
+    private val observableOrderBrand = MutableLiveData<String>()
+    private val observableOrderKind = MutableLiveData<String>()
+    private val observableOrderPrice = MutableLiveData<String>()
+    private val observableName = MutableLiveData<String>()
+    private val observableAddress = MutableLiveData<String>()
+    private val observablePhoneNum = MutableLiveData<String>()
 
     private val tmpItems = mutableListOf<OrderModel>()
 
     fun showLaundryAddDialog() {
-        _observableShowDialog.value = true
+        _observableShowLaundryAddDialog.value = true
     }
 
     fun hideLaundryAddDialog() {
-        _observableShowDialog.value = false
+        _observableShowLaundryAddDialog.value = false
+    }
+
+    fun showLaundryStatusDialog(view: View){
+        _observableLaundryStatusDialog.value = true
+    }
+
+    fun hideLaundryStatusDialog() {
+        _observableLaundryStatusDialog.value = false
     }
 
     fun finishedLaundryFilter() {
@@ -95,12 +112,8 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
     fun saveLaundries(laundry: LaundryModel) {
     }
 
-    fun dismissDialog() {
-        _observableDismissDialog.value = true
-    }
-
-    fun changeDismissDialogStatus() {
-        _observableDismissDialog.value = false
+    fun dismissLaundryAddDialogStatus() {
+        _observableDismissLaundryAddDialog.value = false
     }
 
     fun addLaundries() {
@@ -127,17 +140,6 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
                 }
             }
         }
-
-        restartActivity()
-        dismissDialog()
-    }
-
-    private fun restartActivity(){
-        _observableRestartActivity.value = true
-    }
-
-    fun changeRestartActivityStatus() {
-        _observableRestartActivity.value = false
     }
 
     fun addOrder() {
