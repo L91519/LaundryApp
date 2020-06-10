@@ -1,4 +1,4 @@
-package com.example.laundryapp.ui.laundry_add_dialog
+package com.example.laundryapp.ui.laundry_list.laundry_add_dialog
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import com.example.laundryapp.R
 import com.example.laundryapp.data.model.OrderModel
 import com.example.laundryapp.databinding.ItemOrderBinding
 
-class LaundryAddRecyclerViewAdapter
-    : RecyclerView.Adapter<LaundryAddRecyclerViewAdapter.LaundryAddViewHolder>() {
+class LaundryListAddRecyclerViewAdapter
+    : RecyclerView.Adapter<LaundryListAddRecyclerViewAdapter.LaundryAddViewHolder>() {
 
     private var items = mutableListOf<OrderModel>()
     private lateinit var binding: ItemOrderBinding
