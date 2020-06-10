@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.example.laundryapp.ui.laundry_list.LaundryListViewModel" />
+            type="com.example.laundryapp.ui.laundry_list.laundry_add_dialog.LaundryListAddViewModel" />
     </data>
 
     <RelativeLayout
