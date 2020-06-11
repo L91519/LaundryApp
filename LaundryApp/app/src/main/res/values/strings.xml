@@ -36,4 +36,6 @@
     <string name="laundry_price">price</string>
     
     <string name="laundry_status_change">Laundry Status Change</string>
+
+    <string name="search_view_hint">Search ...</string>
 </resources>
