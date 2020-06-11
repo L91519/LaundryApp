@@ -44,17 +44,23 @@ class LaundryListActivity :
     }
 
     private fun initSpinner() {
-        ArrayAdapter.createFromResource(
-            this,
-            R.array.laundry_filter,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
+//        ArrayAdapter.createFromResource(
+//            this,
+//            R.array.laundry_filter,
+//            android.R.layout.simple_spinner_item
+//        ).also { adapter ->
+//            // Specify the layout to use when the list of choices appears
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            // Apply the adapter to the spinner
+//            spinner.adapter = adapter
+//        }
+//        spinner.setSelection(0)
+
+        val list = resources.getStringArray(R.array.laundry_filter)
+
+        ArrayAdapter(this, R.layout.spinner_item_textview, list).also { adapter ->
             spinner.adapter = adapter
         }
-        spinner.setSelection(0)
     }
 
     private fun observableProperty() {
