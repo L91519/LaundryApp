@@ -13,7 +13,7 @@
     <string name="cancel">취소</string>
     <string name="confirm">확인</string>
 
-    <string name="finished_laundry_check_box">완료 항목 표시</string>
+    <string name="finished_laundry_check_box">완료 항목 숨김</string>
 
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
