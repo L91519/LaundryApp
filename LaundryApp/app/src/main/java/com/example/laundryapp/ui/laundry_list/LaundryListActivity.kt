@@ -3,6 +3,8 @@ package com.example.laundryapp.ui.laundry_list
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.CheckBox
+import android.widget.SearchView
 import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
@@ -11,17 +13,19 @@ import com.example.laundryapp.base.BaseActivity
 import com.example.laundryapp.databinding.ActivityLaundryListBinding
 import com.example.laundryapp.extension.showToastShort
 import com.example.laundryapp.ui.laundry_list.laundry_add_dialog.LaundryListAddDialog
-import kotlinx.android.synthetic.main.activity_laundry_list.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LaundryListActivity :
     BaseActivity<ActivityLaundryListBinding, LaundryListViewModel>(R.layout.activity_laundry_list),
     DialogInterface.OnDismissListener,
-    LaundryStatusDialog.NoticeDialogListener {
+    LaundryStatusDialog.NoticeDialogListener,
+    SearchView.OnQueryTextListener {
     override val vm by viewModel<LaundryListViewModel>()
 
     private lateinit var adapter: LaundryListRecyclerViewAdapter
     private lateinit var spinner: Spinner
+    private lateinit var searchView: SearchView
+    private lateinit var checkBox: CheckBox
 
     private val laundryAddDialog = LaundryListAddDialog()
     private val laundryStatusDialog = LaundryStatusDialog()
@@ -30,17 +34,25 @@ class LaundryListActivity :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        spinner = spnr_search_filter
+        spinner = binding.spnrSearchFilter
+        searchView = binding.svLaundrySearch
+        checkBox = binding.cbFinishedLaundry
+
         adapter = LaundryListRecyclerViewAdapter()
         binding.rvLaundryList.adapter = adapter
 
         initSpinner()
+        initSearchView()
         observableProperty()
     }
 
     override fun onStart() {
         super.onStart()
         vm.getLaundries()
+    }
+
+    private fun initSearchView() {
+        searchView.setOnQueryTextListener(this)
     }
 
     private fun initSpinner() {
@@ -108,5 +120,19 @@ class LaundryListActivity :
 
     override fun onDialogUndoneClick(dialog: DialogFragment) {
         dialog.dismiss()
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        query?.let {
+            adapter.filter(spinner.selectedItemPosition, it)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query.isNullOrEmpty()) {
+            adapter.filter(spinner.selectedItemPosition, "")
+        }
+        return true;
     }
 }
