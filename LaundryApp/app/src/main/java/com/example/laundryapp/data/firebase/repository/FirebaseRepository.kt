@@ -18,7 +18,14 @@ interface FirebaseRepository {
         fail: (Exception) -> Unit
     )
 
-    fun logout()
+    fun logout(
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    )
+
+    fun sendPwReset(email: String,
+                    success: () -> Unit,
+                    fail: (Exception) -> Unit)
 
     fun currentUser(): FirebaseUser?
 

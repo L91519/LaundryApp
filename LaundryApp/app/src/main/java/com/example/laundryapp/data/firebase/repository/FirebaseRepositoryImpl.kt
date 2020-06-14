@@ -25,7 +25,18 @@ class FirebaseRepositoryImpl constructor(private val firebase: FirebaseSource) :
         firebase.register(email, pw, success, fail)
     }
 
-    override fun logout() = firebase.logout()
+    override fun logout(
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) {
+        firebase.logout(success, fail)
+    }
+
+    override fun sendPwReset(email: String,
+                             success: () -> Unit,
+                             fail: (Exception) -> Unit) {
+        firebase.sendPwReset(email, success, fail)
+    }
 
     override fun currentUser() = firebase.currentUser()
 

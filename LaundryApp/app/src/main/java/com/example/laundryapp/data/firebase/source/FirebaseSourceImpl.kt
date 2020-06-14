@@ -48,10 +48,27 @@ class FirebaseSourceImpl() :
             }.addOnFailureListener { e ->
                 fail(e)
 
-        }
+            }
     }
 
-    override fun logout() = firebaseAuth.signOut()
+    override fun logout(
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) = firebaseAuth.signOut()
+
+    override fun sendPwReset(
+        email: String,
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) {
+        firebaseAuth.sendPasswordResetEmail(email)
+            .addOnSuccessListener {
+                success()
+            }
+            .addOnFailureListener { e ->
+                fail(e)
+            }
+    }
 
     override fun currentUser() = firebaseAuth.currentUser
 
