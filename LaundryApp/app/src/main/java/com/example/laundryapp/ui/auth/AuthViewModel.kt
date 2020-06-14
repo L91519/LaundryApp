@@ -18,6 +18,10 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
 //    val observablePassWord : LiveData<String>
 //        get() = _observablePassWord
 
+    private val _observableActivityStatus = MutableLiveData(false)
+    val observableActivityStatus : LiveData<Boolean>
+        get() = _observableActivityStatus
+
     val _observableEmail = MutableLiveData<String>()
     val _observablePassWord = MutableLiveData<String>()
 
@@ -38,6 +42,7 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
                 success = {
                     Intent(view.context, LaundryListActivity::class.java).also {
                         view.context.startActivity(it)
+                        _observableActivityStatus.value = true
                     }
                 },
                 fail = {
@@ -65,6 +70,11 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
                 })
         }
     }
+
+    fun changeActivityStatus(){
+        _observableActivityStatus.value = false
+    }
+
 
     fun logout() {
 

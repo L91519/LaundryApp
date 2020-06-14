@@ -35,5 +35,12 @@ class SignUpActivity :
         vm.observableToast.observe(this@SignUpActivity, Observer {
             showToastShort(it)
         })
+
+        vm.observableActivityStatus.observe(this@SignUpActivity, Observer {
+            if(it) {
+                finish()
+                vm.changeActivityStatus()
+            }
+        })
     }
 }
