@@ -14,6 +14,7 @@ class LaundryListRecyclerViewAdapter
     : RecyclerView.Adapter<LaundryListRecyclerViewAdapter.LaundryListViewHolder>() {
 
     private var items = mutableListOf<LaundryModel>()
+    private var unfilteredItems = mutableListOf<LaundryModel>()
     private lateinit var binding: ItemLaundryBinding
     private var showAllLaundry = false
 
@@ -59,7 +60,60 @@ class LaundryListRecyclerViewAdapter
         holder.bind(items[position])
     }
 
-    fun setItems(newItems: MutableList<LaundryModel>, showAll: Boolean){
+    fun isDoneFilter(isDone: Boolean) {
+        items.clear()
+        if (!isDone) {
+            for (item in unfilteredItems) {
+                if (item.isDone == false)
+                    items.add(item)
+            }
+        } else {
+            items.addAll(unfilteredItems)
+        }
+        notifyDataSetChanged()
+    }
+
+    fun filter(filter: Int, query: String) {
+        items.clear()
+        if (!query.isNullOrEmpty()) {
+            when (filter) {
+                ALL ->
+                    for (item in unfilteredItems) {
+                        if (item.brand!!.contains(query) || item.kind!!.contains(query) ||
+                            item.owner!!.contains(query) || item.phoneNum!!.contains(query)
+                        ) {
+                            items.add(item)
+                        }
+                    }
+                BRAND ->
+                    for (item in unfilteredItems) {
+                        if (item.brand!!.contains(query))
+                            items.add(item)
+                    }
+                KIND ->
+                    for (item in unfilteredItems) {
+                        if (item.kind!!.contains(query))
+                            items.add(item)
+                    }
+                OWNER ->
+                    for (item in unfilteredItems) {
+                        if (item.owner!!.contains(query))
+                            items.add(item)
+                    }
+                PHONE_NUM ->
+                    for (item in unfilteredItems) {
+                        if (item.phoneNum!!.contains(query))
+                            items.add(item)
+                    }
+            }
+
+        } else {
+            items.addAll(unfilteredItems)
+        }
+        notifyDataSetChanged()
+    }
+
+    fun setItems(newItems: MutableList<LaundryModel>, showAll: Boolean) {
         items.clear()
 //        if (showAll)
 //            items.addAll(newItems)
@@ -73,13 +127,21 @@ class LaundryListRecyclerViewAdapter
 
     fun setItems(newItems: MutableList<LaundryModel>) {
         items.clear()
+        unfilteredItems.clear()
         items.addAll(newItems)
+        unfilteredItems.addAll(newItems)
         notifyDataSetChanged()
     }
 
     companion object {
         const val OWNER_VISIBLE: Int = 0
         const val OWNER_GONE: Int = 1
-    }
 
+        const val ALL: Int = 0
+        const val BRAND: Int = 1
+        const val KIND: Int = 2
+        const val OWNER: Int = 3
+        const val PHONE_NUM: Int = 4
+        const val DONE_STATUS: Int = 5
+    }
 }

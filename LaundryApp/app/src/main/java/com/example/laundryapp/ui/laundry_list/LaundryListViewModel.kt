@@ -73,7 +73,7 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
     }
 
     fun finishedLaundryFilter() {
-        _observableFinishedLaundryShow.value = true
+        _observableFinishedLaundryShow.value =  !(_observableFinishedLaundryShow.value as Boolean)
     }
 
     fun getRecentLaundries() {
