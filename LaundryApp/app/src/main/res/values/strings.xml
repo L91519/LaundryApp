@@ -24,6 +24,8 @@
     <string name="login_title">Account Login</string>
     <string name="sign_up_title">New User Sign Up</string>
 
+    <string name="reset_password">Reset Password</string>
+
     <string name="password">password</string>
     <string name="email">email</string>
     <string name="email_hint">user@gmail.com</string>

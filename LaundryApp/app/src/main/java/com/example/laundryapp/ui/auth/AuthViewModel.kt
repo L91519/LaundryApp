@@ -71,7 +71,17 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
         }
     }
 
-    fun changeActivityStatus(){
+    fun sendPw(view: View, email: String) {
+        repository.sendPwReset(email,
+            success = {
+
+            },
+            fail = {
+
+            })
+    }
+
+    fun changeActivityStatus() {
         _observableActivityStatus.value = false
     }
 
