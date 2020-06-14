@@ -76,9 +76,9 @@ class LaundryListActivity :
     }
 
     private fun observableProperty() {
-//        vm.observableFinishedLaundryShow.observe(this@LaundryListActivity, Observer {
-//
-//        })
+        vm.observableFinishedLaundryShow.observe(this@LaundryListActivity, Observer {
+            adapter.isDoneFilter(!it)
+        })
 
         vm.observableShowLaundryAddDialog.observe(this@LaundryListActivity, Observer {
             if (it) {
