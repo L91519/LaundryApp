@@ -6,13 +6,23 @@
         <variable
             name="item"
             type="com.example.laundryapp.data.model.LaundryModel" />
+
+        <variable
+            name="handler"
+            type="com.example.laundryapp.ui.laundry_list.LaundryListHandlerListener" />
+        
+        <variable
+            name="vm"
+            type="com.example.laundryapp.ui.laundry_list.LaundryListViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="8dp">
 
         <RelativeLayout
             android:id="@+id/rl_customer_info"
@@ -56,6 +66,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:onClick="@{(view)->vm.showLaundryStatusDialog()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
