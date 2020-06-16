@@ -6,6 +6,7 @@ import com.example.laundryapp.base.BaseViewModel
 import com.example.laundryapp.data.firebase.repository.FirebaseRepository
 import com.example.laundryapp.data.model.LaundryModel
 import com.example.laundryapp.data.model.OrderModel
+import java.util.*
 
 class LaundryListAddViewModel constructor(private val repository: FirebaseRepository) :
     BaseViewModel() {
@@ -22,16 +23,15 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
     val observableDismissDialog: LiveData<Boolean>
         get() = _observableDismissDialog
 
-    private val _observableRestartActivity = MutableLiveData(false)
-    val observableRestartActivity : LiveData<Boolean>
-        get() = _observableRestartActivity
-
     val observableOrderBrand = MutableLiveData<String>()
     val observableOrderKind = MutableLiveData<String>()
     val observableOrderPrice = MutableLiveData<String>()
     val observableName = MutableLiveData<String>()
     val observableAddress = MutableLiveData<String>()
     val observablePhoneNum = MutableLiveData<String>()
+
+    private val cal = Calendar.getInstance()
+    private var id : Long = DEFAULT_ID
 
     private val tmpItems = mutableListOf<OrderModel>()
 
@@ -55,7 +55,8 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
                     order.price,
                     "",
                     false,
-                    ""
+                    "",
+                    id * cal.timeInMillis
                 ).let { laundryModel ->
                     repository.addItem(laundryModel,
                         success = {
@@ -65,7 +66,9 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
                             _observableToast.value = "Save Laundries Failed"
                         })
                 }
+                id++
             }
+            id = DEFAULT_ID
         }
         dismissDialog()
     }
@@ -90,6 +93,10 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
             observableOrderKind.value = ""
             observableOrderPrice.value = ""
         }
+    }
+
+    companion object{
+        const val DEFAULT_ID: Long = 2
     }
 
 }
