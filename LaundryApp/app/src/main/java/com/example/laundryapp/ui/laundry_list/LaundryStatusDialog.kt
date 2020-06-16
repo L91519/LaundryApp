@@ -10,7 +10,7 @@ import com.example.laundryapp.R
 
 class LaundryStatusDialog : DialogFragment() {
 
-    internal lateinit var listener: NoticeDialogListener
+    private lateinit var listener: NoticeDialogListener
 
     interface NoticeDialogListener {
         fun onDialogDoneClick(dialog: DialogFragment)
@@ -33,14 +33,14 @@ class LaundryStatusDialog : DialogFragment() {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder.setTitle(R.string.laundry_status_change)
-                .setItems(R.array.laundry_status,
-                    DialogInterface.OnClickListener { dialog, position ->
-                        when (position) {
-                            0->listener.onDialogDoneClick(this)
-                            1->listener.onDialogUndoneClick(this)
-                            2 -> dialog.dismiss()
-                        }
-                    })
+                .setItems(R.array.laundry_status
+                ) { dialog, position ->
+                    when (position) {
+                        0->listener.onDialogDoneClick(this)
+                        1->listener.onDialogUndoneClick(this)
+                        2 -> dialog.dismiss()
+                    }
+                }
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
 
