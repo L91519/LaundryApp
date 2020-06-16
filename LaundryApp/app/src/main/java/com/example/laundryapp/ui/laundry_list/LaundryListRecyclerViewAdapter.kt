@@ -10,13 +10,12 @@ import com.example.laundryapp.data.model.LaundryModel
 import com.example.laundryapp.databinding.ItemLaundryBinding
 import kotlinx.android.synthetic.main.item_laundry.view.*
 
-class LaundryListRecyclerViewAdapter
+class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
     : RecyclerView.Adapter<LaundryListRecyclerViewAdapter.LaundryListViewHolder>() {
 
     private var items = mutableListOf<LaundryModel>()
     private var unfilteredItems = mutableListOf<LaundryModel>()
     private lateinit var binding: ItemLaundryBinding
-    private var showAllLaundry = false
 
     inner class LaundryListViewHolder(private val binding: ItemLaundryBinding)
         : RecyclerView.ViewHolder(binding.root){
@@ -110,18 +109,6 @@ class LaundryListRecyclerViewAdapter
         } else {
             items.addAll(unfilteredItems)
         }
-        notifyDataSetChanged()
-    }
-
-    fun setItems(newItems: MutableList<LaundryModel>, showAll: Boolean) {
-        items.clear()
-//        if (showAll)
-//            items.addAll(newItems)
-//        else
-//        {
-//            items.addAll(newItems.filter { !it.isDone!! })
-//        }
-        items.addAll(newItems)
         notifyDataSetChanged()
     }
 
