@@ -15,6 +15,7 @@ class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
 
     private var items = mutableListOf<LaundryModel>()
     private var unfilteredItems = mutableListOf<LaundryModel>()
+    private val vm = vm
     private lateinit var binding: ItemLaundryBinding
 
     inner class LaundryListViewHolder(private val binding: ItemLaundryBinding)
@@ -22,6 +23,7 @@ class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
 
         fun bind(laundryItem: LaundryModel){
             binding.item = laundryItem
+            binding.vm = vm
         }
     }
 
