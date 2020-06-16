@@ -2,7 +2,6 @@ package com.example.laundryapp.data.firebase.repository
 
 import com.example.laundryapp.data.firebase.source.FirebaseSource
 import com.example.laundryapp.data.model.LaundryModel
-import java.lang.Exception
 
 class FirebaseRepositoryImpl constructor(private val firebase: FirebaseSource) :
     FirebaseRepository {
@@ -32,9 +31,11 @@ class FirebaseRepositoryImpl constructor(private val firebase: FirebaseSource) :
         firebase.logout(success, fail)
     }
 
-    override fun sendPwReset(email: String,
-                             success: () -> Unit,
-                             fail: (Exception) -> Unit) {
+    override fun sendPwReset(
+        email: String,
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) {
         firebase.sendPwReset(email, success, fail)
     }
 
@@ -48,9 +49,20 @@ class FirebaseRepositoryImpl constructor(private val firebase: FirebaseSource) :
         firebase.addLaundry(laundryModel, success, fail)
     }
 
-    override fun getLaundries(success: (MutableList<LaundryModel>) -> Unit,
-                          fail: (Exception) -> Unit) {
+    override fun getLaundries(
+        success: (MutableList<LaundryModel>) -> Unit,
+        fail: (Exception) -> Unit
+    ) {
         firebase.getLaundries(success, fail)
+    }
+
+    override fun updateIsDoneStatus(
+        isDone: Boolean,
+        laundryId: String,
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) {
+        firebase.updateIsDoneStatus(isDone, laundryId, success, fail)
     }
 
 }
