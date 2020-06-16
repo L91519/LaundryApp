@@ -71,7 +71,7 @@ class AuthViewModel constructor(private val repository: FirebaseRepository) : Ba
         }
     }
 
-    fun sendPw(view: View, email: String) {
+    fun sendPw(email: String) {
         repository.sendPwReset(email,
             success = {
 
