@@ -45,4 +45,11 @@ interface FirebaseSource {
         fail: (Exception) -> Unit
     )
 
+    fun updateIsDoneStatus(
+        isDone: Boolean,
+        laundryId: String,
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    )
+
 }

@@ -36,6 +36,6 @@ data class LaundryModel(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Int = 0
+    val id: Long = 0
 
 )

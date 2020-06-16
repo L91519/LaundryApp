@@ -84,7 +84,8 @@ class FirebaseSourceImpl() :
             firebaseDatabase.collection("users")
                 .document(it)
                 .collection("laundries")
-                .add(laundry)
+                .document(laundry.id.toString())
+                .set(laundry)
                 .addOnSuccessListener {
                     success()
                 }.addOnFailureListener { e ->
@@ -105,9 +106,9 @@ class FirebaseSourceImpl() :
         success: (MutableList<LaundryModel>) -> Unit,
         fail: (Exception) -> Unit
     ) {
-        currentUser()?.uid?.let {
+        currentUser()?.uid?.let { user ->
             firebaseDatabase.collection("users")
-                .document(it)
+                .document(user)
                 .collection("laundries").get()
                 .addOnSuccessListener { documents ->
                     mutableListOf<LaundryModel>().let { laundryModels ->
@@ -120,8 +121,26 @@ class FirebaseSourceImpl() :
                 .addOnFailureListener { e ->
                     fail(e)
                 }
-                .addOnCompleteListener {
-                    Log.d("","")
+        }
+    }
+
+    override fun updateIsDoneStatus(
+        isDone: Boolean,
+        laundryId: String,
+        success: () -> Unit,
+        fail: (Exception) -> Unit
+    ) {
+        currentUser()?.uid?.let { user ->
+            firebaseDatabase.collection("users")
+                .document(user)
+                .collection("laundries")
+                .document(laundryId)
+                .update("done", isDone)
+                .addOnSuccessListener {
+                    success()
+                }
+                .addOnFailureListener { e ->
+                    fail(e)
                 }
         }
     }
