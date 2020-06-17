@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="8dp"
-                android:text="2020.04.23"
+                android:text="@{item.date.toString()}"
                 android:textSize="8dp" />
 
             <TextView

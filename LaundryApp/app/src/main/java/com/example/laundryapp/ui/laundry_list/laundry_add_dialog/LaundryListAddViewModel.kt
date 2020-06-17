@@ -6,6 +6,7 @@ import com.example.laundryapp.base.BaseViewModel
 import com.example.laundryapp.data.firebase.repository.FirebaseRepository
 import com.example.laundryapp.data.model.LaundryModel
 import com.example.laundryapp.data.model.OrderModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 class LaundryListAddViewModel constructor(private val repository: FirebaseRepository) :
@@ -31,6 +32,8 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
     val observablePhoneNum = MutableLiveData<String>()
 
     private val cal = Calendar.getInstance()
+    private val date : Date = cal.time
+    private val dateFormat = SimpleDateFormat("yyyyMMdd")
     private var id : Long = DEFAULT_ID
 
     private val tmpItems = mutableListOf<OrderModel>()
@@ -55,7 +58,7 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
                     order.price,
                     "",
                     false,
-                    "",
+                    order.date,
                     id * cal.timeInMillis
                 ).let { laundryModel ->
                     repository.addItem(laundryModel,
@@ -70,6 +73,7 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
             }
             id = DEFAULT_ID
         }
+        initOrderList()
         dismissDialog()
     }
 
@@ -85,17 +89,16 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
                 OrderModel(
                     observableOrderBrand.value,
                     observableOrderKind.value,
-                    observableOrderPrice.value
+                    observableOrderPrice.value,
+                    dateFormat.format(date).toInt()
                 )
             )
             _observableOrderList.value = tmpItems
-            observableOrderBrand.value = ""
-            observableOrderKind.value = ""
-            observableOrderPrice.value = ""
+            initOrder()
         }
     }
 
-    companion object{
+    companion object {
         const val DEFAULT_ID: Long = 2
     }
 
