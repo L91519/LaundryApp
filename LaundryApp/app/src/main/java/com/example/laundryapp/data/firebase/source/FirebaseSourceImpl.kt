@@ -5,6 +5,8 @@ import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FirebaseSourceImpl() :
     FirebaseSource {
@@ -18,9 +20,9 @@ class FirebaseSourceImpl() :
     private val laundries: CollectionReference =
         firebaseDatabase.collection("laundries")
 
-//    private val firebaseReference : DatabaseReference by lazy {
-//        firebaseDatabase.reference
-//    }
+    private val cal : Date = Calendar.getInstance().time
+    private val dateFormat = SimpleDateFormat("yyyyMMdd")
+    private val monthYearFormat = SimpleDateFormat("yyyyMM")
 
     override fun login(
         email: String,
@@ -78,8 +80,6 @@ class FirebaseSourceImpl() :
         fail: (Exception) -> Unit
     ) {
 
-//        laundries.document(laundry.id.toString()).set(laundry)
-
         currentUser()?.uid?.let {
             firebaseDatabase.collection("users")
                 .document(it)
@@ -106,10 +106,14 @@ class FirebaseSourceImpl() :
         success: (MutableList<LaundryModel>) -> Unit,
         fail: (Exception) -> Unit
     ) {
+//        Log.d("tag_dateFormat", dateFormat.format(cal).toString())
+//        Log.d("tag_dateFormat-100", (dateFormat.format(cal).toInt()-100).toString())
         currentUser()?.uid?.let { user ->
             firebaseDatabase.collection("users")
                 .document(user)
-                .collection("laundries").get()
+                .collection("laundries")
+                .whereGreaterThan("date", dateFormat.format(cal).toInt() - 100)
+                .get()
                 .addOnSuccessListener { documents ->
                     mutableListOf<LaundryModel>().let { laundryModels ->
                         for (document in documents) {

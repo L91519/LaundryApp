@@ -29,10 +29,10 @@ data class LaundryModel(
     val etc: String? = null,
 
     @ColumnInfo(name = "status")
-    val isDone: Boolean? = null,
+    val done: Boolean? = null,
 
     @ColumnInfo(name = "data")
-    val date: String? = null,
+    val date: Int? = null,
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
