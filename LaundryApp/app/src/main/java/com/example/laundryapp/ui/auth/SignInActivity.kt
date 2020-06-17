@@ -20,14 +20,19 @@ class SignInActivity :
 
     override fun onStarted() {
         TODO("Not yet implemented")
+        //Show Progress Bar
     }
 
     override fun onSuccess() {
         TODO("Not yet implemented")
+        //Hide Progress Bar
+        //Go to List Activity
     }
 
     override fun onFailure(message: String) {
         TODO("Not yet implemented")
+        //Hide Progress Bar
+        //Show Toast
     }
 
     private fun observableProperty() {
