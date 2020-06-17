@@ -98,6 +98,19 @@ class LaundryListAddViewModel constructor(private val repository: FirebaseReposi
         }
     }
 
+    private fun initOrder() {
+        observableOrderBrand.value = ""
+        observableOrderKind.value = ""
+        observableOrderPrice.value = ""
+    }
+
+    private fun initOrderList() {
+        _observableOrderList.value?.clear()
+        observableName.value = ""
+        observableAddress.value = ""
+        observablePhoneNum.value = ""
+    }
+
     companion object {
         const val DEFAULT_ID: Long = 2
     }
