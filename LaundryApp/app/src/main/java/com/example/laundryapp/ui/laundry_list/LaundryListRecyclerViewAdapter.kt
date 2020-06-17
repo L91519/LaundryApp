@@ -65,7 +65,7 @@ class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
         items.clear()
         if (!isDone) {
             for (item in unfilteredItems) {
-                if (item.isDone == false)
+                if (item.done == false)
                     items.add(item)
             }
         } else {

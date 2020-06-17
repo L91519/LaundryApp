@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.example.laundryapp.R
 import com.example.laundryapp.base.BaseActivity
+import com.example.laundryapp.data.model.LaundryModel
 import com.example.laundryapp.databinding.ActivityLaundryListBinding
 import com.example.laundryapp.extension.showToastShort
 import com.example.laundryapp.ui.laundry_list.laundry_add_dialog.LaundryListAddDialog
@@ -21,6 +22,13 @@ class LaundryListActivity :
     LaundryStatusDialog.NoticeDialogListener,
     SearchView.OnQueryTextListener {
     override val vm by viewModel<LaundryListViewModel>()
+
+    private val laundryListHandlerListener: LaundryListHandlerListener =
+        object : LaundryListHandlerListener {
+            override fun laundryItemOnClick() {
+                TODO("Not yet implemented")
+            }
+        }
 
     private lateinit var adapter: LaundryListRecyclerViewAdapter
     private lateinit var spinner: Spinner
@@ -38,7 +46,7 @@ class LaundryListActivity :
         searchView = binding.svLaundrySearch
         checkBox = binding.cbFinishedLaundry
 
-        adapter = LaundryListRecyclerViewAdapter()
+        adapter = LaundryListRecyclerViewAdapter(vm)
         binding.rvLaundryList.adapter = adapter
 
         initSpinner()
@@ -87,9 +95,9 @@ class LaundryListActivity :
             }
         })
 
-        vm.observableLaundryStatusDialog.observe(this, Observer {
-            if (it) {
-                showLaundryStatusDialog()
+        vm.observableShowLaundryStatusDialog.observe(this@LaundryListActivity, Observer { id ->
+            if (id > 0) {
+                showLaundryStatusDialog(id.toString())
                 vm.hideLaundryStatusDialog()
             }
         })
@@ -103,23 +111,25 @@ class LaundryListActivity :
         laundryAddDialog.show(supportFragmentManager, "laundryAddDialog")
     }
 
-    private fun showLaundryStatusDialog() {
+    private fun showLaundryStatusDialog(id: String) {
+        laundryStatusDialog.setLaundry(id)
         laundryStatusDialog.show(supportFragmentManager, "laundryStatusDialog")
-    }
-
-    private fun dismissLaundryAddDialog() {
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
         onStart()
     }
 
-    override fun onDialogDoneClick(dialog: DialogFragment) {
+    override fun onDialogDoneClick(dialog: DialogFragment, id: String) {
+        vm.updateIsDoneStatus(true, id)
         dialog.dismiss()
+        onStart()
     }
 
-    override fun onDialogUndoneClick(dialog: DialogFragment) {
+    override fun onDialogUndoneClick(dialog: DialogFragment, id: String) {
+        vm.updateIsDoneStatus(false, id)
         dialog.dismiss()
+        onStart()
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {

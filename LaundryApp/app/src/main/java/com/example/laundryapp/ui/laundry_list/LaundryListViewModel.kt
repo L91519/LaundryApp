@@ -18,8 +18,8 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
     val observableShowLaundryAddDialog: LiveData<Boolean>
         get() = _observableShowLaundryAddDialog
 
-    private val _observableShowLaundryStatusDialog = MutableLiveData(false)
-    val observableShowLaundryStatusDialog : LiveData<Boolean>
+    private val _observableShowLaundryStatusDialog = MutableLiveData<Long>()
+    val observableShowLaundryStatusDialog : LiveData<Long>
         get() = _observableShowLaundryStatusDialog
 
     private val _observableFinishedLaundryShow = MutableLiveData(false)
@@ -38,12 +38,12 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
         _observableShowLaundryAddDialog.value = false
     }
 
-    fun showLaundryStatusDialog(){
-        _observableShowLaundryStatusDialog.value = true
+    fun showLaundryStatusDialog(id: Long){
+        _observableShowLaundryStatusDialog.value = id
     }
 
     fun hideLaundryStatusDialog() {
-        _observableShowLaundryStatusDialog.value = false
+        _observableShowLaundryStatusDialog.value = 0
     }
 
     fun finishedLaundryFilter() {
