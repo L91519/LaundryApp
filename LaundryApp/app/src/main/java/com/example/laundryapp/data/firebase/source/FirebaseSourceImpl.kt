@@ -1,6 +1,5 @@
 package com.example.laundryapp.data.firebase.source
 
-import android.util.Log
 import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
@@ -22,7 +21,6 @@ class FirebaseSourceImpl() :
 
     private val cal : Date = Calendar.getInstance().time
     private val dateFormat = SimpleDateFormat("yyyyMMdd")
-    private val monthYearFormat = SimpleDateFormat("yyyyMM")
 
     override fun login(
         email: String,

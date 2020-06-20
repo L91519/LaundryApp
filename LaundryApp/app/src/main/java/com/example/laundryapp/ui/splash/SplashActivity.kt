@@ -8,7 +8,8 @@ import com.example.laundryapp.R
 import com.example.laundryapp.ui.auth.SignInActivity
 
 class SplashActivity: AppCompatActivity() {
-    val SPLASH_TIME: Long = 1500
+//    private val SPLASH_TIME: Long = 1500
+    private val SPLASH_TIME: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

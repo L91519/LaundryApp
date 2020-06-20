@@ -29,10 +29,11 @@ class LaundryListAddDialog : DialogFragment() {
         _context = context
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         val dialogWidth = _context.resources.getDimensionPixelSize(R.dimen.laundry_add_dialog_width)
         val dialogHeight = _context.resources.getDimensionPixelSize(R.dimen.laundry_add_dialog_height)
+
         dialog?.window?.setLayout(dialogWidth, dialogHeight)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
