@@ -18,6 +18,7 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="no_account">Don\'t have an account</string>
+    <string name="maintain_user_session">Remember Me</string>
 
     <string name="goto_login_page">Don\'t have an account.\nSign Up Here</string>
     <string name="goto_sign_up_page">Already have an account.\nLogin Here</string>

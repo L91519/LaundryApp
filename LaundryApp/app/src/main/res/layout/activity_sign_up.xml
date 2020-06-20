@@ -102,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:onClick="@{(v) -> vm.goToLogin(v)}"
+                        android:onClick="@{(v) -> vm.goToSignIn(v)}"
                         android:text="@string/goto_sign_up_page"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Headline"

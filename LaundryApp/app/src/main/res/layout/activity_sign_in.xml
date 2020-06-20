@@ -86,15 +86,27 @@
                         android:singleLine="true"
                         android:text="@={vm.observablePassWord}" />
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cb_maintain_user_session"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/maintain_user_session"
+                        android:textColor="@color/gray4"/>
 
                     <TextView
                         android:id="@+id/text_view_forget_password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:paddingTop="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
                         android:text="@string/password_lost" />
 
+                    </RelativeLayout>
 
                     <Button
                         android:id="@+id/button_sign_in"
