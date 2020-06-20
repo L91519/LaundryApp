@@ -24,8 +24,9 @@ class LaundryListActivity :
 
     private val laundryListHandlerListener: LaundryListHandlerListener =
         object : LaundryListHandlerListener {
-            override fun laundryItemOnClick() {
-                TODO("Not yet implemented")
+            override fun laundryItemOnClick(id: String) {
+                laundryStatusDialog.setLaundry(id)
+                laundryStatusDialog.show(supportFragmentManager, "laundryStatusDialog")
             }
         }
 
