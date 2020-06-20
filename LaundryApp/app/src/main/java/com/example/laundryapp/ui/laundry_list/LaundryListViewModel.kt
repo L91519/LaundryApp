@@ -1,6 +1,5 @@
 package com.example.laundryapp.ui.laundry_list
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.laundryapp.base.BaseViewModel
@@ -22,9 +21,10 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
     val observableShowLaundryStatusDialog : LiveData<Long>
         get() = _observableShowLaundryStatusDialog
 
-    private val _observableFinishedLaundryShow = MutableLiveData(false)
-    val observableFinishedLaundryShow: LiveData<Boolean>
-        get() = _observableFinishedLaundryShow
+//    private val _observableFinishedLaundryShow = MutableLiveData(false)
+//    val observableFinishedLaundryShow: LiveData<Boolean>
+//        get() = _observableFinishedLaundryShow
+    val observableFinishedLaundryShow = MutableLiveData<Boolean>()
 
     private val _observableToast = MutableLiveData<String>()
     val observableToast: LiveData<String>
@@ -44,10 +44,6 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
 
     fun hideLaundryStatusDialog() {
         _observableShowLaundryStatusDialog.value = 0
-    }
-
-    fun finishedLaundryFilter() {
-        _observableFinishedLaundryShow.value =  !(_observableFinishedLaundryShow.value as Boolean)
     }
 
     fun getRecentLaundries() {

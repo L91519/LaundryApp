@@ -27,12 +27,12 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/spnr_search_filter" />
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <CheckBox
             android:layout_marginTop="12dp"
-            android:onClick="@{()->vm.finishedLaundryFilter()}"
             android:id="@+id/cb_finished_laundry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="@={vm.observableFinishedLaundryShow}"
             android:text="@string/finished_laundry_check_box"
             android:textSize="12dp"
             android:layout_below="@id/sv_laundry_search"
@@ -40,6 +40,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             bindLaundryItems="@{vm.observableLaundryList}"
+            bindLaundryShowAll="@{vm.observableFinishedLaundryShow}"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/rv_laundry_list"
