@@ -10,73 +10,68 @@ import com.example.laundryapp.ui.laundry_list.LaundryListActivity
 
 class AuthViewModel constructor(private val repository: FirebaseRepository) : BaseViewModel() {
 
-//    private val _observableEmail = MutableLiveData<String>()
-//    val observableEmail : LiveData<String>
-//        get() = _observableEmail
-
-//    private val _observablePassWord = MutableLiveData<String>()
-//    val observablePassWord : LiveData<String>
-//        get() = _observablePassWord
-
     private val _observableActivityStatus = MutableLiveData(false)
-    val observableActivityStatus : LiveData<Boolean>
+    val observableActivityStatus: LiveData<Boolean>
         get() = _observableActivityStatus
 
-    val _observableEmail = MutableLiveData<String>()
-    val _observablePassWord = MutableLiveData<String>()
+    val observableEmail = MutableLiveData<String>()
+    val observablePassWord = MutableLiveData<String>()
 
     private val _observableToast = MutableLiveData<String>()
-    val observableToast : LiveData<String>
+    val observableToast: LiveData<String>
         get() = _observableToast
 
     private val _observableIsLoginPage = MutableLiveData<Boolean>(true)
-    val observableIsLoginPage : LiveData<Boolean>
+    val observableIsLoginPage: LiveData<Boolean>
         get() = _observableIsLoginPage
 
+    var authListener: AuthListener? = null
+
     fun login(view: View) {
-        if(_observableEmail.value.isNullOrEmpty() || _observablePassWord.value.isNullOrEmpty()){
+        if (observableEmail.value.isNullOrEmpty() || observablePassWord.value.isNullOrEmpty()) {
             return
-        }
-        else {
-            repository.login(_observableEmail.value!!, _observablePassWord.value!!,
+        } else {
+            authListener?.onStarted()
+            repository.login(observableEmail.value!!, observablePassWord.value!!,
                 success = {
                     Intent(view.context, LaundryListActivity::class.java).also {
                         view.context.startActivity(it)
                         _observableActivityStatus.value = true
                     }
                 },
-                fail = {
-                    _observableToast.value = "Login Failed"
+                fail = {e ->
+                    authListener?.onFailure(e.toString())
                 })
         }
 
     }
 
     fun register(view: View) {
-        if(_observableEmail.value.isNullOrEmpty() || _observablePassWord.value.isNullOrEmpty()){
+        if (observableEmail.value.isNullOrEmpty() || observablePassWord.value.isNullOrEmpty()) {
             return
-        }
-        else {
-            repository.register(_observableEmail.value!!,
-                _observablePassWord.value!!,
+        } else {
+            authListener?.onStarted()
+            repository.register(observableEmail.value!!,
+                observablePassWord.value!!,
                 success = {
                     Intent(view.context, SignInActivity::class.java).also {
                         view.context.startActivity(it)
                     }
                 },
                 fail = { e ->
-//                    _observableToast.value = "Sign In Failed"
-                    _observableToast.value = e.toString()
+                    authListener?.onFailure(e.toString())
                 })
         }
     }
 
     fun sendPw(email: String) {
+        authListener?.onStarted()
         repository.sendPwReset(email,
             success = {
 
             },
-            fail = {
+            fail = {e ->
+                authListener?.onFailure(e.toString())
 
             })
     }

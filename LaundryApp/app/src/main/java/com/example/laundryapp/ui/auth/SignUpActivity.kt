@@ -1,6 +1,7 @@
 package com.example.laundryapp.ui.auth
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.example.laundryapp.R
 import com.example.laundryapp.base.BaseActivity
@@ -20,15 +21,17 @@ class SignUpActivity :
     }
 
     override fun onStarted() {
-        TODO("Not yet implemented")
+        binding.progressbar.visibility = View.VISIBLE
     }
 
     override fun onSuccess() {
-        TODO("Not yet implemented")
+        binding.progressbar.visibility = View.INVISIBLE
+        //Go to List Activity
     }
 
     override fun onFailure(message: String) {
-        TODO("Not yet implemented")
+        binding.progressbar.visibility = View.INVISIBLE
+        showToastShort(message)
     }
 
     private fun observableProperty() {
