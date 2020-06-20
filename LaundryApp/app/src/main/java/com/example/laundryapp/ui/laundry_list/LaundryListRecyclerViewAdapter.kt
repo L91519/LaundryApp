@@ -13,10 +13,12 @@ import kotlinx.android.synthetic.main.item_laundry.view.*
 class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
     : RecyclerView.Adapter<LaundryListRecyclerViewAdapter.LaundryListViewHolder>() {
 
+    private val vm = vm
+
     private var items = mutableListOf<LaundryModel>()
     private var unfilteredItems = mutableListOf<LaundryModel>()
-    private val vm = vm
-    private lateinit var binding: ItemLaundryBinding
+
+        private lateinit var binding: ItemLaundryBinding
 
     inner class LaundryListViewHolder(private val binding: ItemLaundryBinding)
         : RecyclerView.ViewHolder(binding.root){
@@ -61,15 +63,15 @@ class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
         holder.bind(items[position])
     }
 
-    fun isDoneFilter(isDone: Boolean) {
+    fun isDoneFilter(showAll: Boolean) {
         items.clear()
-        if (!isDone) {
+        if (!showAll) {
+            items.addAll(unfilteredItems)
+        } else {
             for (item in unfilteredItems) {
                 if (item.done == false)
                     items.add(item)
             }
-        } else {
-            items.addAll(unfilteredItems)
         }
         notifyDataSetChanged()
     }
@@ -119,6 +121,15 @@ class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
         unfilteredItems.clear()
         items.addAll(newItems)
         unfilteredItems.addAll(newItems)
+        notifyDataSetChanged()
+    }
+
+    fun setItems(newItems: MutableList<LaundryModel>, showAll: Boolean) {
+        items.clear()
+        unfilteredItems.clear()
+        items.addAll(newItems)
+        unfilteredItems.addAll(newItems)
+        isDoneFilter(showAll)
         notifyDataSetChanged()
     }
 
