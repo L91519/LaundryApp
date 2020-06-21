@@ -88,7 +88,8 @@ class LaundryListActivity :
             if (showAll) {
                 adapter.isDoneFilter(showAll)
             } else {
-                onStart()
+                vm.getLaundries()
+//                onStart()
             }
         })
 
@@ -121,13 +122,15 @@ class LaundryListActivity :
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
-        onStart()
+//        onStart()
+        vm.getLaundries()
     }
 
     override fun onDialogDoneClick(dialog: DialogFragment, id: String) {
         vm.updateIsDoneStatus(true, id)
         dialog.dismiss()
-        onStart()
+        vm.getLaundries()
+//        onStart()
     }
 
     override fun onDialogUndoneClick(dialog: DialogFragment, id: String) {
