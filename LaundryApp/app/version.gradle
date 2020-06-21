@@ -10,7 +10,7 @@ ext {
                     database: '19.1.0',
                     firestore: '21.2.1',
                     analytics: '17.2.2',
-                    auth     : '19.0.0',
+                    auth     : '18.0.0',
                     core     : '',
             ],
             okhttp             : '4.3.0',

@@ -142,6 +142,5 @@ class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
         const val KIND: Int = 2
         const val OWNER: Int = 3
         const val PHONE_NUM: Int = 4
-        const val DONE_STATUS: Int = 5
     }
 }

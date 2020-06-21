@@ -46,13 +46,6 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
         _observableShowLaundryStatusDialog.value = 0
     }
 
-    fun getRecentLaundries() {
-    }
-
-    fun saveRecentLaundries() {
-        //TODO : Using Rx might help
-    }
-
     fun getLaundries() {
         repository.getLaundries(
             success = { laundryModels ->

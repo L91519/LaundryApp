@@ -29,7 +29,7 @@ class SignInActivity :
 
     override fun onSuccess() {
         binding.progressbar.visibility = View.INVISIBLE
-        goToSignUp()
+        goToList()
     }
 
     override fun onFailure(message: String) {
