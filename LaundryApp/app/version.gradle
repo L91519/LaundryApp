@@ -7,11 +7,12 @@ ext {
                     recyclerview: '1.1.0',
             ],
             firebase           : [
-                    database: '19.1.0',
-                    firestore: '21.2.1',
-                    analytics: '17.2.2',
-                    auth     : '18.0.0',
-                    core     : '',
+                    database   : '19.1.0',
+                    firestore  : '21.2.1',
+                    analytics  : '17.2.2',
+                    auth       : '18.0.0',
+                    core       : '',
+                    firebase_ui: '5.0.0',
             ],
             okhttp             : '4.3.0',
             retrofit           : '2.7.1',
@@ -22,6 +23,7 @@ ext {
             ted_permission     : '2.1.0',
             lifecycle_extension: '',
             gms                : '17.0.0',
+            paging             : '1.0.1',
     ]
     deps = [
             androidx: [
@@ -32,10 +34,11 @@ ext {
                     recyclerview: "androidx.recyclerview:recyclerview:$version.androidx.recyclerview",
             ],
             firebase: [
-                    database : "com.google.firebase:firebase-database:$version.firebase.database",
-                    firestore: "com.google.firebase:firebase-firestore:$version.firebase.firestore",
-                    analytics: "com.google.firebase:firebase-analytics:$version.firebase.analytics",
-                    auth     : "com.google.firebase:firebase-auth:$version.firebase.auth",
+                    database   : "com.google.firebase:firebase-database:$version.firebase.database",
+                    firestore  : "com.google.firebase:firebase-firestore:$version.firebase.firestore",
+                    analytics  : "com.google.firebase:firebase-analytics:$version.firebase.analytics",
+                    auth       : "com.google.firebase:firebase-auth:$version.firebase.auth",
+                    firebase_ui: "com.firebaseui:firebase-ui-firestore:$version.firebase.firebase_ui",
             ],
             library : [
                     okhttp                    : "com.squareup.okhttp3:okhttp:$version.okhttp",
@@ -55,6 +58,9 @@ ext {
                     ted_permission            : "gun0912.ted:tedpermission:$version.ted_permission",
 
                     gms                       : "com.google.android.gms:play-services-auth:$version.gms",
+
+                    paging                    : "android.arch.paging:runtime:$version.paging",
+
             ],
             kapt    : [
                     room: "androidx.room:room-compiler:$version.room",
