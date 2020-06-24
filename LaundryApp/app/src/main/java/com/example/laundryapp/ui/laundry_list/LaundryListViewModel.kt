@@ -2,9 +2,12 @@ package com.example.laundryapp.ui.laundry_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.PagedList
 import com.example.laundryapp.base.BaseViewModel
 import com.example.laundryapp.data.firebase.repository.FirebaseRepository
 import com.example.laundryapp.data.model.LaundryModel
+import com.firebase.ui.firestore.paging.FirestorePagingOptions
+import com.google.firebase.firestore.Query
 
 class LaundryListViewModel constructor(private val repository: FirebaseRepository) :
     BaseViewModel() {
@@ -69,4 +72,27 @@ class LaundryListViewModel constructor(private val repository: FirebaseRepositor
             })
     }
 
+    fun getOptions(): FirestorePagingOptions.Builder<LaundryModel> {
+
+
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setPrefetchDistance(2)
+            .setPageSize(10)
+            .build()
+
+        var pagedListQuery: Query? = null
+
+        repository.getPagingQuery(
+            success = { query ->
+                pagedListQuery = query
+            },
+            fail = { e ->
+                _observableToast.value = e.message
+            }
+        )
+
+        return FirestorePagingOptions.Builder<LaundryModel>()
+            .setQuery(pagedListQuery!!, config, LaundryModel::class.java)
+    }
 }

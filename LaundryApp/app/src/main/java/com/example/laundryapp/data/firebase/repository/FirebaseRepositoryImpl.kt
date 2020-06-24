@@ -2,6 +2,7 @@ package com.example.laundryapp.data.firebase.repository
 
 import com.example.laundryapp.data.firebase.source.FirebaseSource
 import com.example.laundryapp.data.model.LaundryModel
+import com.google.firebase.firestore.Query
 
 class FirebaseRepositoryImpl constructor(private val firebase: FirebaseSource) :
     FirebaseRepository {
@@ -63,6 +64,12 @@ class FirebaseRepositoryImpl constructor(private val firebase: FirebaseSource) :
         fail: (Exception) -> Unit
     ) {
         firebase.updateIsDoneStatus(isDone, laundryId, success, fail)
+    }
+
+    override fun getPagingQuery(
+        success: (Query) -> Unit,
+        fail: (Exception) -> Unit) {
+        firebase.getPagingQuery(success, fail)
     }
 
 }

@@ -2,7 +2,7 @@ package com.example.laundryapp.data.firebase.repository
 
 import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseUser
-import java.lang.Exception
+import com.google.firebase.firestore.Query
 
 interface FirebaseRepository {
 
@@ -44,6 +44,11 @@ interface FirebaseRepository {
         isDone: Boolean,
         laundryId: String,
         success: () -> Unit,
+        fail: (Exception) -> Unit
+    )
+
+    fun getPagingQuery(
+        success: (Query) -> Unit,
         fail: (Exception) -> Unit
     )
 }

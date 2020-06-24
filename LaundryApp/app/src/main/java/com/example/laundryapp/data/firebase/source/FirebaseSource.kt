@@ -2,6 +2,7 @@ package com.example.laundryapp.data.firebase.source
 
 import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.Query
 
 interface FirebaseSource {
     fun login(
@@ -52,4 +53,8 @@ interface FirebaseSource {
         fail: (Exception) -> Unit
     )
 
+    fun getPagingQuery(
+        success: (Query) -> Unit,
+        fail: (Exception) -> Unit
+    )
 }

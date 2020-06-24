@@ -4,22 +4,26 @@ import com.example.laundryapp.data.model.LaundryModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FirebaseSourceImpl() :
+class FirebaseSourceImpl constructor(
+    private val firebaseAuth: FirebaseAuth,
+    private val firebaseDatabase: FirebaseFirestore
+) :
     FirebaseSource {
-    private val firebaseAuth: FirebaseAuth by lazy {
-        FirebaseAuth.getInstance()
-    }
-    private val firebaseDatabase: FirebaseFirestore by lazy {
-        FirebaseFirestore.getInstance()
-    }
+//    private val firebaseAuth: FirebaseAuth by lazy {
+//        FirebaseAuth.getInstance()
+//    }
+//    private val firebaseDatabase: FirebaseFirestore by lazy {
+//        FirebaseFirestore.getInstance()
+//    }
 
     private val laundries: CollectionReference =
         firebaseDatabase.collection("laundries")
 
-    private val cal : Date = Calendar.getInstance().time
+    private val cal: Date = Calendar.getInstance().time
     private val dateFormat = SimpleDateFormat("yyyyMMdd")
 
     override fun login(
@@ -145,5 +149,22 @@ class FirebaseSourceImpl() :
                     fail(e)
                 }
         }
+    }
+
+    override fun getPagingQuery(
+        success: (Query) -> Unit,
+        fail: (Exception) -> Unit
+    ) {
+        try {
+            currentUser()?.uid?.let { user ->
+                val postsCollection =
+                    firebaseDatabase.collection("users").document(user).collection("laundries")
+                val query = postsCollection.orderBy("date", Query.Direction.DESCENDING)
+                success(query)
+            }
+        } catch (e: Exception) {
+            fail(e)
+        }
+
     }
 }
