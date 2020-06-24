@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.laundryapp.R
 import com.example.laundryapp.data.model.LaundryModel
 import com.example.laundryapp.databinding.ItemLaundryBinding
+import com.firebase.ui.firestore.paging.FirestorePagingAdapter
+import com.firebase.ui.firestore.paging.FirestorePagingOptions
 import kotlinx.android.synthetic.main.item_laundry.view.*
 
-class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
-    : RecyclerView.Adapter<LaundryListRecyclerViewAdapter.LaundryListViewHolder>() {
+class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel, pagingOptions: FirestorePagingOptions<LaundryModel>)
+    : FirestorePagingAdapter<LaundryModel, LaundryListRecyclerViewAdapter.LaundryListViewHolder>(pagingOptions) {
+//    : RecyclerView.Adapter<LaundryListRecyclerViewAdapter.LaundryListViewHolder>() {
 
     private val vm = vm
 
@@ -143,4 +146,9 @@ class LaundryListRecyclerViewAdapter(vm: LaundryListViewModel)
         const val OWNER: Int = 3
         const val PHONE_NUM: Int = 4
     }
+
+    override fun onBindViewHolder(p0: LaundryListViewHolder, p1: Int, p2: LaundryModel) {
+        TODO("Not yet implemented")
+    }
+
 }

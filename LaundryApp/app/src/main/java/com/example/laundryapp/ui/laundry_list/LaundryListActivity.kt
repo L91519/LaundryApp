@@ -38,7 +38,6 @@ class LaundryListActivity :
     private val laundryAddDialog = LaundryListAddDialog()
     private val laundryStatusDialog = LaundryStatusDialog()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,9 +45,7 @@ class LaundryListActivity :
         searchView = binding.svLaundrySearch
         checkBox = binding.cbFinishedLaundry
 
-        adapter = LaundryListRecyclerViewAdapter(vm)
-        binding.rvLaundryList.adapter = adapter
-
+        initRecyclerViewAdapter()
         initSpinner()
         initSearchView()
         observableProperty()
@@ -57,6 +54,15 @@ class LaundryListActivity :
     override fun onStart() {
         super.onStart()
         vm.getLaundries()
+    }
+
+    private fun initRecyclerViewAdapter() {
+        val options = vm.getOptions()
+            .setLifecycleOwner(this)
+            .build()
+
+        adapter = LaundryListRecyclerViewAdapter(vm, options)
+        binding.rvLaundryList.adapter = adapter
     }
 
     private fun initSearchView() {
