@@ -3,8 +3,9 @@ package com.example.laundryapp.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
+import com.google.firebase.firestore.IgnoreExtraProperties
 
+@IgnoreExtraProperties
 @Entity(tableName = "Laundries")
 data class LaundryModel(
     @ColumnInfo(name = "phoneNum")
